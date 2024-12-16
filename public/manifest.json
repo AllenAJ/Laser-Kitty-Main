@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "CryptoKitty Designer",
+  "version": "1.0.0",
+  "description": "Design your own CryptoKitties",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "128": "icon.png"
+    },
+    "default_width": 800,
+    "default_height": 600
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [{
+    "resources": [
+      "sounds/*",
+      "cattributes/*"
+    ],
+    "matches": ["<all_urls>"]
+  }],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

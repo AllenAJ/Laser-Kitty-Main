@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Extension Container */
+body, #root {
+  width: 400px;
+  height: 600px;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Kitty SVG Styles */
+.kitty-svg-container {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.kitty-svg-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.kitty-svg-container svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  preserveAspectRatio: xMidYMid meet;
+}
+
+/* Animations */
+.kitty-svg-container svg path,
+.kitty-svg-container svg circle,
+.kitty-svg-container svg rect,
+.kitty-svg-container svg ellipse {
+  transition: fill 0.3s ease-in-out;
+}
+
+.kitty-svg-container svg circle[class*="eye"],
+.kitty-svg-container svg circle[class*="pupil"],
+.kitty-svg-container svg circle[class*="iris"] {
+  transition: transform 0.1s ease-out;
+}
+
+/* UI Element Styles */
+.button-hover-effect {
+  transition: all 0.2s ease-in-out;
+}
+
+.button-hover-effect:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-picker-item {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.color-picker-item:hover {
+  transform: scale(1.1);
+}
+
+/* Loading Animation */
+.loading-spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Transition Animations */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.alert {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Full Page Mode */
+@media (min-width: 401px) {
+  body, #root {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+/* Add to your styles.css */
+.kitty-svg-container {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.loading-spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

@@ -1,0 +1,39 @@
+{
+  "name": "cryptokitty-designer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/contracts": "^5.1.0",
+    "ethers": "^5.7.2",
+    "firebase": "^11.0.2",
+    "hardhat": "^2.22.17",
+    "lucide-react": "^0.462.0",
+    "magic-sdk": "^28.19.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^6.11.0",
+    "dotenv-webpack": "^8.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^3.3.4",
+    "tailwindcss": "^3.4.15",
+    "ts-loader": "^9.5.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.97.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "start": "webpack --watch --mode=development",
+    "build": "webpack --mode=production",
+    "clean": "rm -rf build"
+  }
+}
