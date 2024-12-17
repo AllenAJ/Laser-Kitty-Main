@@ -94,6 +94,85 @@ CryptoKitty Designer is a Web3-enabled browser extension that combines NFT custo
   - Zap Master (50 zaps)
   - Destruction King (100 zaps)
 
+ 🔨 Building on CryptoKitty Platform
+CryptoKitty Designer is built as an extensible platform that others can build upon. Here's how you can integrate with and extend our ecosystem.
+🏗️ Platform Components
+1. Smart Contracts
+solidityCopy// Core contract address (Sepolia testnet)
+0x0122a11EbC7c99a599984B768DAB9d2189d3E006
+
+// NFT contract address for exclusive features
+0x84c911C2BB03c11DB0Cc9A9Da327418F26FabCdf
+Key Features
+
+Mint new kitties
+Query kitty attributes
+Check ownership
+Add equipment slots
+Verify exclusive access
+
+2. Public APIs
+Base URL: https://crypto-kitty-minter.vercel.app/api
+
+Cattributes API (SVG assets)
+Achievement System
+Kitty Metadata
+User Preferences
+
+3. Asset System
+
+Modular SVG components
+Color replacement system
+Animation framework
+Sound effects library
+
+🎮 Integration Examples
+1. Build a Game
+javascriptCopy// Subscribe to laser events
+window.addEventListener('kitty-laser', (event) => {
+  const { position, power, kittyId } = event.detail;
+  // Add game mechanics based on laser shots
+});
+
+// Add custom achievements
+KittyAchievements.register({
+  id: 'SUPER_SHOOTER',
+  threshold: 200,
+  title: 'Super Shooter',
+  reward: {
+    type: 'equipment',
+    item: 'golden-laser'
+  }
+});
+2. Create Equipment NFTs
+solidityCopy// Example: Create compatible equipment
+contract KittyEquipment is ERC721 {
+    function equip(uint256 kittyId, uint256 equipmentId) external {
+        require(CryptoKitty(KITTY_CONTRACT).ownerOf(kittyId) == msg.sender);
+        // Equipment logic
+    }
+}
+3. Custom Visualization
+typescriptCopy// Use our SVG manipulation API
+const customKitty = await fetch('/api/cattributes/combine', {
+  method: 'POST',
+  body: JSON.stringify({
+    body: 'mainecoon-calicool',
+    eyes: 'googly',
+    mouth: 'beard',
+    colors: {
+      primary: '#ff0000',
+      secondary: '#00ff00',
+      tertiary: '#0000ff'
+    },
+    // Add custom layers
+    extras: [{
+      type: 'hat',
+      svg: '<svg>...</svg>'
+    }]
+  })
+});
+
 ## 🔌 API Documentation
 
 ## Base URL
