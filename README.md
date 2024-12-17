@@ -1,6 +1,6 @@
 # 🐱 Laser Kitty
 
-![gameplay image]([https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true](https://media.discordapp.net/attachments/1288447112035696660/1318508640474234890/image.png?ex=6762945c&is=676142dc&hm=a8d57a2fc8b8fca4dc33a94917bb500ea62775fd63bda5ccdd1059feda83887e&=&format=webp&quality=lossless&width=674&height=1022))
+![gameplay image](https://media.discordapp.net/attachments/1288447112035696660/1318508640474234890/image.png?ex=6762945c&is=676142dc&hm=a8d57a2fc8b8fca4dc33a94917bb500ea62775fd63bda5ccdd1059feda83887e&=&format=webp&quality=lossless&width=674&height=1022)
 
 
 Turn your browser into a playground with customizable crypto-kitties that can shoot lasers! Design your unique NFT kitty and use it to playfully "remove" elements from any webpage.
