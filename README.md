@@ -2,7 +2,6 @@
 
 ![gameplay image](https://media.discordapp.net/attachments/1288447112035696660/1318508640474234890/image.png?ex=6762945c&is=676142dc&hm=a8d57a2fc8b8fca4dc33a94917bb500ea62775fd63bda5ccdd1059feda83887e&=&format=webp&quality=lossless&width=674&height=1022)
 
-
 Turn your browser into a playground with customizable crypto-kitties that can shoot lasers! Design your unique NFT kitty and use it to playfully "remove" elements from any webpage.
 
 ## 🎯 Project Overview
@@ -14,9 +13,9 @@ CryptoKitty Designer is a Web3-enabled browser extension that combines NFT custo
 - Earn achievements through gameplay
 - Access exclusive features through NFT ownership
 
-### 🌟 Core Features
+## 🌟 Core Features
 
-#### Designer Mode
+### Designer Mode
 - 8 unique body types
 - 6 pattern variations
 - 8 eye styles
@@ -25,7 +24,7 @@ CryptoKitty Designer is a Web3-enabled browser extension that combines NFT custo
 - Real-time preview
 - Web3 minting capabilities
 
-#### Gameplay Mode
+### Gameplay Mode
 - Interactive laser shooting mechanics
 - Physics-based eye tracking
 - Achievement system
@@ -51,84 +50,37 @@ CryptoKitty Designer is a Web3-enabled browser extension that combines NFT custo
    - Click anywhere to shoot lasers
    - Watch elements disappear with style!
 
-## 🔧 Technical Architecture
+## 🔨 Building on Laser Kitty
 
-### Extension Components
-```
-/
-├── public/
-│   ├── cattributes/      # SVG assets
-│   ├── sounds/           # Audio effects
-│   └── manifest.json     # Extension config
-└── src/
-    ├── components/       # React components
-    ├── contexts/         # State management
-    ├── services/         # Business logic
-    └── types/           # TypeScript definitions
-```
+### Platform Components
 
-### Minting Page Components
-```
-/
-├── public/
-│   └── cattributes/     # Shared assets
-└── src/
-    └── app/
-        ├── api/         # Backend endpoints
-        └── components/  # React components
-```
-
-## 🎨 Creative Implementation
-
-### Interactive Elements
-- Dynamic eye tracking
-- Physics-based laser animations
-- Particle effects for destruction
-- Adaptive color schemes
-- Sound effects and visual feedback
-
-### Achievement System
-- Progression-based rewards
-- Multiple achievement tiers:
-  - Laser Newbie (10 zaps)
-  - Zap Master (50 zaps)
-  - Destruction King (100 zaps)
-
- 🔨 Building on CryptoKitty Platform
-CryptoKitty Designer is built as an extensible platform that others can build upon. Here's how you can integrate with and extend our ecosystem.
-🏗️ Platform Components
-1. Smart Contracts
-solidityCopy// Core contract address (Sepolia testnet)
+#### 1. Smart Contracts
+```solidity
+// Core contract address (Sepolia testnet)
 0x0122a11EbC7c99a599984B768DAB9d2189d3E006
 
 // NFT contract address for exclusive features
 0x84c911C2BB03c11DB0Cc9A9Da327418F26FabCdf
-Key Features
+```
 
-Mint new kitties
-Query kitty attributes
-Check ownership
-Add equipment slots
-Verify exclusive access
+#### 2. Public APIs
+Base URL: `https://crypto-kitty-minter.vercel.app/api`
+- Cattributes API (SVG assets)
+- Achievement System
+- Kitty Metadata
+- User Preferences
 
-2. Public APIs
-Base URL: https://crypto-kitty-minter.vercel.app/api
+#### 3. Asset System
+- Modular SVG components
+- Color replacement system
+- Animation framework
+- Sound effects library
 
-Cattributes API (SVG assets)
-Achievement System
-Kitty Metadata
-User Preferences
+### Integration Examples
 
-3. Asset System
-
-Modular SVG components
-Color replacement system
-Animation framework
-Sound effects library
-
-🎮 Integration Examples
-1. Build a Game
-javascriptCopy// Subscribe to laser events
+#### 1. Build a Game
+```javascript
+// Subscribe to laser events
 window.addEventListener('kitty-laser', (event) => {
   const { position, power, kittyId } = event.detail;
   // Add game mechanics based on laser shots
@@ -144,16 +96,22 @@ KittyAchievements.register({
     item: 'golden-laser'
   }
 });
-2. Create Equipment NFTs
-solidityCopy// Example: Create compatible equipment
+```
+
+#### 2. Create Equipment NFTs
+```solidity
+// Example: Create compatible equipment
 contract KittyEquipment is ERC721 {
     function equip(uint256 kittyId, uint256 equipmentId) external {
         require(CryptoKitty(KITTY_CONTRACT).ownerOf(kittyId) == msg.sender);
         // Equipment logic
     }
 }
-3. Custom Visualization
-typescriptCopy// Use our SVG manipulation API
+```
+
+#### 3. Custom Visualization
+```typescript
+// Use our SVG manipulation API
 const customKitty = await fetch('/api/cattributes/combine', {
   method: 'POST',
   body: JSON.stringify({
@@ -172,214 +130,98 @@ const customKitty = await fetch('/api/cattributes/combine', {
     }]
   })
 });
+```
 
 ## 🔌 API Documentation
 
-## Base URL
+### Base URL
 ```
 https://crypto-kitty-minter.vercel.app/api
 ```
 
-## Endpoints
+### Endpoints
 
-### List All Cattribute Types
-Returns a list of all available cattribute types.
-
-```
+#### List All Cattribute Types
+```http
 GET /cattributes
 ```
 
-#### Response
+Response:
 ```json
 {
   "types": ["body", "colors", "eye", "mouth"]
 }
 ```
 
-### List Files by Type
-Returns all available files for a specific cattribute type.
-
-```
+#### List Files by Type
+```http
 GET /cattributes?type={type}
 ```
 
-#### Parameters
+Parameters:
 | Parameter | Type   | Description                                         |
 |-----------|--------|-----------------------------------------------------|
 | type      | string | Required. One of: "body", "colors", "eye", "mouth" |
 
-#### Response
+Response:
 ```json
 {
   "type": "body",
-  "files": ["mainecoon-calicool", "cymric-jaguar", ...],
+  "files": ["mainecoon-calicool", "cymric-jaguar"],
   "count": 48,
   "urls": [
     "/api/cattributes?type=body&name=mainecoon-calicool",
-    "/api/cattributes?type=body&name=cymric-jaguar",
-    ...
+    "/api/cattributes?type=body&name=cymric-jaguar"
   ]
 }
 ```
 
-### Get Specific SVG File
-Returns the SVG content for a specific cattribute.
-
-```
+#### Get Specific SVG File
+```http
 GET /cattributes?type={type}&name={name}
 ```
 
-#### Parameters
-| Parameter | Type   | Description                                         |
-|-----------|--------|-----------------------------------------------------|
-| type      | string | Required. One of: "body", "colors", "eye", "mouth" |
-| name      | string | Required. Name of the specific file without .svg extension |
+Response: SVG content (image/svg+xml)
 
-#### Response
-Content-Type: image/svg+xml
-```svg
-<svg>...</svg>
-```
+### Error Responses
 
-## Available Cattributes
-
-### Body Types (with Patterns)
-Available combinations of body types and patterns:
-- Body Types: mainecoon, cymric, laperm, munchkin, sphynx, ragamuffin, himalayan, chartreux
-- Patterns: spock, tigerpunk, calicool, luckystripe, jaguar, totesbasic
-
-Format: `{bodyType}-{pattern}`  
-Example: `mainecoon-calicool`
-
-### Eye Types
-- wingtips
-- fabulous
-- otaku
-- raisedbrow
-- simple
-- crazy
-- thicccbrowz
-- googly
-
-### Mouth Types
-- whixtensions
-- dali
-- saycheese
-- beard
-- tongue
-- happygokitty
-- pouty
-- soserious
-- gerbil
-- exclusive (requires NFT ownership)
-
-### Colors
-Primary:
-- mauveover (#ded0ee)
-- cloudwhite (#ffffff)
-- salmon (#f4a792)
-- shadowgrey (#b1b1be)
-- orangesoda (#f7bc56)
-- aquamarine (#add5d2)
-- greymatter (#d1dadf)
-- oldlace (#ffebe9)
-- cottoncandy (#ecd1eb)
-
-Secondary:
-- peach (#f9cfad)
-- bloodred (#ff7a7a)
-- emeraldgreen (#8be179)
-- granitegrey (#b1aeb9)
-- kittencream (#f7ebda)
-
-Tertiary:
-- barkbrown (#886662)
-- cerulian (#385877)
-- scarlet (#ea5f5a)
-- skyblue (#83d5ff)
-- coffee (#756650)
-- royalpurple (#cf5be8)
-- lemonade (#ffef85)
-- swampgreen (#44e192)
-- chocolate (#c47e33)
-- royalblue (#5b6ee8)
-- wolfgrey (#737184)
-
-Eye Colors:
-- gold (#fcdf35)
-- bubblegum (#ef52d1)
-- limegreen (#aef72f)
-- chestnut (#a56429)
-- topaz (#0ba09c)
-- mintgreen (#43edac)
-- strawberry (#ef4b62)
-- sizzurp (#7c40ff)
-
-## Error Responses
-
-### 400 Bad Request
-Returned when the request parameters are invalid.
+#### 400 Bad Request
 ```json
 {
   "error": "Invalid type. Must be one of: body, colors, eye, mouth"
 }
 ```
 
-### 404 Not Found
-Returned when the requested file doesn't exist.
+#### 404 Not Found
 ```json
 {
   "error": "File mainecoon-calicool.svg not found in body"
 }
 ```
 
-### 500 Internal Server Error
-Returned when there's a server-side error.
+#### 500 Internal Server Error
 ```json
 {
   "error": "Internal server error"
 }
 ```
 
-## Rate Limiting
-Currently no rate limiting is implemented, but please be mindful of request frequency.
+### API Features
+- CORS enabled
+- 1-year cache for SVG responses
+- No rate limiting (please be mindful)
 
-## CORS
-The API is CORS-enabled and can be accessed from any origin.
-
-## Caching
-SVG responses include cache headers with a max age of 1 year (31536000 seconds).
-
-## Example Usage
-
-### JavaScript/Fetch
+### Example Usage
 ```javascript
 // List all cattribute types
 fetch('https://crypto-kitty-minter.vercel.app/api/cattributes')
   .then(response => response.json())
   .then(data => console.log(data.types));
 
-// Get all body types
-fetch('https://crypto-kitty-minter.vercel.app/api/cattributes?type=body')
-  .then(response => response.json())
-  .then(data => console.log(data.files));
-
 // Get specific SVG
 fetch('https://crypto-kitty-minter.vercel.app/api/cattributes?type=body&name=mainecoon-calicool')
   .then(response => response.text())
   .then(svg => console.log(svg));
-```
-
-### cURL
-```bash
-# List all types
-curl https://crypto-kitty-minter.vercel.app/api/cattributes
-
-# Get all body types
-curl https://crypto-kitty-minter.vercel.app/api/cattributes?type=body
-
-# Get specific SVG
-curl https://crypto-kitty-minter.vercel.app/api/cattributes?type=body&name=mainecoon-calicool
 ```
 
 ## 🔗 Resources
