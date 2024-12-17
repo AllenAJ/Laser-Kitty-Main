@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Palette, LogOut, Play, Trophy } from 'lucide-react';
 import { getUserPreferences } from '../services/userPreferences';
-import bgImage from './bg.webp';
+import bgImage from '../assets/bg.webp';
 
 interface MenuScreenProps {
   onCustomize: () => void;

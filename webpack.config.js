@@ -14,10 +14,11 @@ module.exports = {
  output: {
    path: path.resolve(__dirname, 'build'),
    filename: '[name].js',
-   clean: true
+   clean: true,
+   assetModuleFilename: 'assets/[hash][ext][query]'
  },
  resolve: {
-   extensions: ['.tsx', '.ts', '.js', '.jsx'],
+   extensions: ['.tsx', '.ts', '.js', '.jsx', '.webp'],
    alias: {
      '@': path.resolve(__dirname, 'src/'),
    }
@@ -42,9 +43,12 @@ module.exports = {
        type: 'asset/resource'
      },
      {
-      test: /\.(png|jpg|jpeg|gif|webp)$/i,
-      type: 'asset/resource'
-    }
+       test: /\.webp$/i,
+       type: 'asset/resource',
+       generator: {
+         filename: 'images/[hash][ext][query]'
+       }
+     }
    ]
  },
  plugins: [
@@ -75,6 +79,14 @@ module.exports = {
        {
          from: "src/background.js",
          to: "background.js"
+       },
+       {
+         from: "src/components/*.webp",
+         to: "images/[name][ext]"
+       },
+       {
+         from: "public/sounds",
+         to: "sounds"
        }
      ]
    })
